@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "terraform-fiap"
-    key    = "bluesburguer/terraform.tfstate"
+    bucket = "ordering-system"
+    key    = "bluesburguer/database.tfstate"
     region = "us-east-1"
   }
 }

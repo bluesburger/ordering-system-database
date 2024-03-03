@@ -1,3 +1,3 @@
-output "rds-name" {
-  value = "rds-${var.projectName}"
+output "rds_endpoint" {
+  value = "${aws_db_instance.rds.endpoint}"
 }

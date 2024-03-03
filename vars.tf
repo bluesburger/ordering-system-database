@@ -1,5 +1,5 @@
 variable "projectName" {
-  default = "bluesburger"
+  default = "bluesburguer"
 }
 
 variable "regionDefault" {
