@@ -7,19 +7,15 @@ variable "regionDefault" {
 }
 
 variable "subnet01" {
-  default = "subnet-0c10fb95593b44c4d"
 }
 
 variable "subnet02" {
-  default = "subnet-00eccd7ce1dd711b1"
 }
 
 variable "subnet03" {
-  default = "subnet-00bc2cee69d07cd2a"
 }
 
 variable "vpcId" {
-  default = "vpc-04f8876f879088e10"
 }
 
 variable "vpcCIDR" {
@@ -36,10 +32,12 @@ variable "engineRdsVersion" {
 
 variable "rdsUser" {
   description = "Inserir usuario do banco em secrets"
+  default     = "orderuser"
 }
 
 variable "rdsPass" {
   description = "Inserir senha do banco em secrets"
+  default     = "orderpass"
 }
 
 variable "instanceClass" {
