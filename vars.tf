@@ -32,12 +32,10 @@ variable "engineRdsVersion" {
 
 variable "rdsUser" {
   description = "Inserir usuario do banco em secrets"
-  default     = "orderuser"
 }
 
 variable "rdsPass" {
   description = "Inserir senha do banco em secrets"
-  default     = "orderpass"
 }
 
 variable "instanceClass" {
