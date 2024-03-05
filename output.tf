@@ -1,6 +1,6 @@
 output "rds_endpoint" {
   value     = aws_db_instance.rds.endpoint
-  sensitive = true
+  # sensitive = true
 }
 
 output "rds_aws_instance_identifier" {

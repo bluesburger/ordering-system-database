@@ -5,8 +5,8 @@ resource "aws_security_group" "sg-rds" {
 
   ingress {
     description = "VPC"
-    from_port   = 5432
-    to_port     = 5432
+    from_port   = 3306
+    to_port     = 3306
     protocol    = "tcp"
     # cidr_blocks = [var.vpcCIDR]
     cidr_blocks = ["0.0.0.0/0"]
@@ -14,8 +14,8 @@ resource "aws_security_group" "sg-rds" {
 
   egress {
     description = "VPC"
-    from_port   = 5432
-    to_port     = 5432
+    from_port   = 3306
+    to_port     = 3306
     protocol    = "tcp"
     # cidr_blocks = [var.vpcCIDR]
     cidr_blocks = ["0.0.0.0/0"]

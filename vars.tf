@@ -23,11 +23,11 @@ variable "vpcCIDR" {
 }
 
 variable "engineRds" {
-  default = "postgres"
+  default = "mysql"
 }
 
 variable "engineRdsVersion" {
-  default = "13.10"
+  default = "8.0.36"
 }
 
 variable "rdsUser" {

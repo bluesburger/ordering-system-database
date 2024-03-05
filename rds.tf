@@ -16,7 +16,7 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot          = true
   publicly_accessible          = false
   deletion_protection          = true
-  performance_insights_enabled = true
+  performance_insights_enabled = false
   backup_retention_period      = 1
   backup_window                = "00:00-00:30"
   copy_tags_to_snapshot        = true
