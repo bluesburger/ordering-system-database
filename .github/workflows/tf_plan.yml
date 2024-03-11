@@ -18,7 +18,7 @@ jobs:
     name: 'Terraform Plan for Production'
     runs-on: ubuntu-latest
     env:
-      TF_WORKING_DIR: 'ordering-system-database-main'
+      TF_WORKING_DIR: '.'
 
     defaults:
       run:
