@@ -7,15 +7,19 @@ variable "regionDefault" {
 }
 
 variable "subnet01" {
+  default = ""
 }
 
 variable "subnet02" {
+  default = ""
 }
 
 variable "subnet03" {
+  default = ""
 }
 
 variable "vpcId" {
+  default = ""
 }
 
 variable "vpcCIDR" {
