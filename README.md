@@ -1,5 +1,5 @@
 # Banco de dados Gerenciado Ordering System
-Repositório para detalhar o banco de dados gerenciado do sistema ordering-system
+Repositório para detalhar o banco de dados gerenciado do sistema ordering-system.
 
 # AWS
 1. Criar, caso não exista, uma nova VPC em modo avançado, com 3 zonas de disponibilidade
