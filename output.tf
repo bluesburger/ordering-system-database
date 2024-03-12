@@ -1,5 +1,5 @@
 output "rds_endpoint" {
-  value     = aws_db_instance.rds.endpoint
+  value = aws_db_instance.rds.endpoint
   # sensitive = true
 }
 
