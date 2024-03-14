@@ -6,22 +6,6 @@ variable "regionDefault" {
   default = "us-east-1"
 }
 
-variable "subnet01" {
-  default = ""
-}
-
-variable "subnet02" {
-  default = ""
-}
-
-variable "subnet03" {
-  default = ""
-}
-
-variable "vpcId" {
-  default = ""
-}
-
 variable "vpcCIDR" {
   default = "172.31.0.0/16"
 }
@@ -36,10 +20,12 @@ variable "engineRdsVersion" {
 
 variable "rdsUser" {
   description = "Inserir usuario do banco em secrets"
+  default     = "root"
 }
 
 variable "rdsPass" {
   description = "Inserir senha do banco em secrets"
+  default     = "Root2024"
 }
 
 variable "instanceClass" {

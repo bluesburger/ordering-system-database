@@ -1,7 +1,7 @@
 resource "aws_security_group" "sg-rds" {
   name        = "SG-${var.projectName}-DATABASE"
   description = var.projectName
-  vpc_id      = var.vpcId
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description = "VPC"

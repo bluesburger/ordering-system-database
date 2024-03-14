@@ -1,7 +1,14 @@
 terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
   backend "s3" {
-    bucket = "order.system"
-    key    = "bluesburguer/database.tfstate"
+    bucket = "ordering-systems3"
+    key    = "aws-vpc/terraform.tfstate"
     region = "us-east-1"
   }
 }
