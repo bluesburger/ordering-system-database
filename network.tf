@@ -15,6 +15,8 @@ resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.1.0/24"
 
+  availability_zone = "us-east-1a" # Substitua pela zona de disponibi
+
   tags = {
     Name = "subnet-terraform-public-1"
   }
@@ -24,6 +26,8 @@ resource "aws_subnet" "subnet2" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.2.0/24"
 
+  availability_zone = "us-east-1b" # Substitua pela zona de disponibi
+
   tags = {
     Name = "subnet-terraform-public-2"
   }
@@ -32,6 +36,8 @@ resource "aws_subnet" "subnet2" {
 resource "aws_subnet" "subnet3" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.3.0/24"
+
+  availability_zone = "us-east-1c" # Substitua pela zona de disponibi
 
   tags = {
     Name = "subnet-terraform-public-3"
