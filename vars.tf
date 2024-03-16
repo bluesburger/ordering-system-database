@@ -18,12 +18,12 @@ variable "engineRdsVersion" {
   default = "8.0.36"
 }
 
-variable "TF_VAR_AWS_RDS_USER" {
+variable "rdsUser" {
   type        = string
   sensitive   = true
 }
 
-variable "TF_VAR_AWS_RDS_PASS" {
+variable "rdsPass" {
   type        = string
   sensitive   = true
 }

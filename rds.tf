@@ -3,8 +3,8 @@ resource "aws_db_instance" "rds" {
   engine                       = var.engineRds
   engine_version               = var.engineRdsVersion
   identifier                   = "rds-${var.projectName}"
-  username                     = var.TF_VAR_AWS_RDS_USER
-  password                     = var.TF_VAR_AWS_RDS_PASS
+  username                     = var.rdsUser
+  password                     = var.rdsPass
   instance_class               = var.instanceClass
   storage_type                 = var.storageType
   allocated_storage            = var.minStorage
