@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "ordering-system"
+    bucket = "ordering-systems3"
     key    = "bluesburguer/database.tfstate"
     region = "us-east-1"
   }
