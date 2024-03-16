@@ -19,13 +19,13 @@ variable "engineRdsVersion" {
 }
 
 variable "rdsUser" {
-  type        = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 
 variable "rdsPass" {
-  type        = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 
 variable "instanceClass" {
