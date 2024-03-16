@@ -44,6 +44,29 @@ resource "aws_subnet" "subnet3" {
   }
 }
 
+resource "aws_subnet" "subnet_private" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "10.0.4.0/24"  
+
+  availability_zone = "us-east-1d" 
+
+  tags = {
+    Name = "subnet-terraform-private-1"
+  }
+}
+
+resource "aws_subnet" "subnet_private_2" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "10.0.5.0/24"  
+
+  availability_zone = "us-east-1e" 
+
+  tags = {
+    Name = "subnet-terraform-private-2"
+  }
+}
+
+
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
 
@@ -93,4 +116,23 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   security_group_id = aws_security_group.security_group.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
+}
+
+
+# Cria um NAT Gateway
+resource "aws_nat_gateway" "nat_gateway" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.subnet_public.id
+}
+
+# Associa um Elastic IP ao NAT Gateway
+resource "aws_eip" "nat_eip" {
+  vpc = true
+}
+
+# Associa uma rota para o NAT Gateway na tabela de roteamento da subnet privada
+resource "aws_route" "private_nat_gateway" {
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat_gateway.id
 }
