@@ -132,7 +132,7 @@ resource "aws_eip" "nat_eip" {
 
 # Associa uma rota para o NAT Gateway na tabela de roteamento da subnet privada
 resource "aws_route" "private_nat_gateway" {
-  route_table_id         = aws_route_table.private.id
+  route_table_id         = aws_route_table.route_table.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_gateway.id
 }
