@@ -8,6 +8,8 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_RDS_USER: ${{ secrets.AWS_RDS_USER }}
+  AWS_RDS_PASS: ${{ secrets.AWS_RDS_PASS }}
 
 permissions:
   pull-requests: write
@@ -46,9 +48,9 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: TF_LOG=DEBUG terraform plan -no-color 
+        run: TF_LOG=DEBUG terraform plan -no-color -out latest
         continue-on-error: true
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve "latest"
