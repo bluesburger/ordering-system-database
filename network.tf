@@ -44,7 +44,7 @@ resource "aws_subnet" "subnet3" {
   }
 }
 
-resource "aws_subnet" "subnet_private" {
+resource "aws_subnet" "subnet_private_1" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.4.0/24"
 
@@ -133,6 +133,6 @@ resource "aws_eip" "nat_eip" {
 # Associa uma rota para o NAT Gateway na tabela de roteamento da subnet privada
 resource "aws_route" "private_nat_gateway" {
   route_table_id         = aws_route_table.route_table.id
-  destination_cidr_block = "0.0.0.0/0"
+  destination_cidr_block = "10.0.5.0/24"
   nat_gateway_id         = aws_nat_gateway.nat_gateway.id
 }
