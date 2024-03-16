@@ -122,12 +122,12 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
 # Cria um NAT Gateway
 resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.subnet_public.id
+  subnet_id     = aws_subnet.subnet1.id
 }
 
 # Associa um Elastic IP ao NAT Gateway
 resource "aws_eip" "nat_eip" {
-  vpc = true
+  domain = "vpc"
 }
 
 # Associa uma rota para o NAT Gateway na tabela de roteamento da subnet privada
