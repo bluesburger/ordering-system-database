@@ -19,13 +19,11 @@ variable "engineRdsVersion" {
 }
 
 variable "TF_VAR_AWS_RDS_USER" {
-  description = "Inserir usuario do banco em secrets"
   type        = string
   sensitive   = true
 }
 
 variable "TF_VAR_AWS_RDS_PASS" {
-  description = "Inserir senha do banco em secrets"
   type        = string
   sensitive   = true
 }
