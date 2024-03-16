@@ -18,14 +18,14 @@ variable "engineRdsVersion" {
   default = "8.0.36"
 }
 
-variable "rdsUser" {
+variable "AWS_RDS_USER" {
   description = "Inserir usuario do banco em secrets"
-  default     = "root"
+  type        = string
 }
 
-variable "rdsPass" {
+variable "AWS_RDS_PASS" {
   description = "Inserir senha do banco em secrets"
-  default     = "Root2024"
+  type        = string
 }
 
 variable "instanceClass" {

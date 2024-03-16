@@ -7,14 +7,14 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "ordering-systems3"
-    key    = "aws-vpc/terraform.tfstate"
+    bucket = "ordering-system"
+    key    = "bluesburguer/database.tfstate"
     region = "us-east-1"
   }
 }
 
 provider "aws" {
-  region  = var.regionDefault
+  region = var.regionDefault
 
   default_tags {
     tags = var.tags
