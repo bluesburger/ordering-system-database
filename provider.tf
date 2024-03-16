@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "ordering-systems-marlon"
+    bucket = "ordering-systems3"
     key    = "aws-vpc/terraform.tfstate"
     region = "us-east-1"
   }
