@@ -83,13 +83,23 @@ resource "aws_route_table" "route_table" {
 }
 
 resource "aws_route_table_association" "rta" {
-  subnet_id      = [
-    aws_subnet.subnet1.id,
-    aws_subnet.subnet2.id,
-    aws_subnet.subnet3.id,
-  ]
+  subnet_id = aws_subnet.subnet1.id
+
   route_table_id = aws_route_table.route_table.id
 }
+
+resource "aws_route_table_association" "rta2" {
+  subnet_id = aws_subnet.subnet2.id
+
+  route_table_id = aws_route_table.route_table.id
+}
+
+resource "aws_route_table_association" "rta3" {
+  subnet_id = aws_subnet.subnet3.id
+
+  route_table_id = aws_route_table.route_table.id
+}
+
 
 resource "aws_security_group" "security_group" {
   name        = "security_group-terraform"
@@ -127,11 +137,19 @@ resource "aws_route_table" "private_route_table" {
 # Cria um NAT Gateway
 resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = [
-    aws_subnet.subnet_private_1.id,
-    aws_subnet.subnet_private_2.id
-  ]
+  subnet_id     = aws_subnet.subnet_private_1.id
+}
 
+resource "aws_route_table_association" "rta4" {
+  subnet_id = aws_subnet.subnet_private_1.id
+
+  route_table_id = aws_route_table.private_route_table
+}
+
+resource "aws_route_table_association" "rta5" {
+  subnet_id = aws_subnet.subnet_private_2.id
+
+  route_table_id = aws_route_table.private_route_table
 }
 
 # Associa um Elastic IP ao NAT Gateway
