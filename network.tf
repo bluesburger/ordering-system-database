@@ -12,10 +12,9 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "subnet1" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.1.0/24"
-
-  availability_zone = "us-east-1a" # Substitua pela zona de disponibi
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "subnet-terraform-public-1"
@@ -23,10 +22,9 @@ resource "aws_subnet" "subnet1" {
 }
 
 resource "aws_subnet" "subnet2" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.2.0/24"
-
-  availability_zone = "us-east-1b" # Substitua pela zona de disponibi
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "us-east-1b"
 
   tags = {
     Name = "subnet-terraform-public-2"
@@ -34,10 +32,9 @@ resource "aws_subnet" "subnet2" {
 }
 
 resource "aws_subnet" "subnet3" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.3.0/24"
-
-  availability_zone = "us-east-1c" # Substitua pela zona de disponibi
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "us-east-1c"
 
   tags = {
     Name = "subnet-terraform-public-3"
@@ -45,9 +42,8 @@ resource "aws_subnet" "subnet3" {
 }
 
 resource "aws_subnet" "subnet_private_1" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.4.0/24"
-
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = "10.0.4.0/24"
   availability_zone = "us-east-1d"
 
   tags = {
@@ -56,16 +52,14 @@ resource "aws_subnet" "subnet_private_1" {
 }
 
 resource "aws_subnet" "subnet_private_2" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.5.0/24"
-
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = "10.0.5.0/24"
   availability_zone = "us-east-1e"
 
   tags = {
     Name = "subnet-terraform-private-2"
   }
 }
-
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
@@ -105,12 +99,11 @@ resource "aws_security_group" "security_group" {
 
 resource "aws_vpc_security_group_ingress_rule" "security_groups_ipv4" {
   security_group_id = aws_security_group.security_group.id
-  cidr_ipv4         = "0.0.0.0/0" # Correção aqui
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
 }
-
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   security_group_id = aws_security_group.security_group.id
@@ -118,6 +111,14 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   ip_protocol       = "-1"
 }
 
+# Criar a tabela de roteamento privada
+resource "aws_route_table" "private_route_table" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "private-route-table"
+  }
+}
 
 # Cria um NAT Gateway
 resource "aws_nat_gateway" "nat_gateway" {
@@ -136,4 +137,3 @@ resource "aws_route" "private_nat_gateway" {
   destination_cidr_block = aws_subnet.subnet_private_2.cidr_block
   nat_gateway_id         = aws_nat_gateway.nat_gateway.id
 }
-
