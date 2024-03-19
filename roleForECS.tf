@@ -34,7 +34,7 @@ resource "aws_iam_policy" "ecs_policy" {
           "ecr:GetDownloadUrlForLayer"
         ],
         "Resource" : [
-          "arn:aws:ecr:us-east-1:637423186279:repository/odering-system-bbs3"
+          "arn:aws:ecr:us-east-1:637423186279:repository/ordering-system-blues-burguer-prod"
         ]
       }
     ]
