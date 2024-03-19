@@ -18,7 +18,7 @@ jobs:
   plan-prod:
     name: 'Terraform RDS'
     runs-on: ubuntu-latest
-    environment: 'fernando'
+    environment: 'marlondev'
     env:
       TF_WORKING_DIR: '.'
 
