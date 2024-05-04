@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "vpc-terraform"
+    Name = "vpc-order-terraform"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_subnet" "subnet1" {
   availability_zone = "us-east-1a" # Substitua pela zona de disponibi
 
   tags = {
-    Name = "subnet-terraform-public-1"
+    Name = "subnet-terraform-order-public-1"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "subnet2" {
   availability_zone = "us-east-1b" # Substitua pela zona de disponibi
 
   tags = {
-    Name = "subnet-terraform-public-2"
+    Name = "subnet-terraform-order-public-2"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_subnet" "subnet3" {
   availability_zone = "us-east-1c" # Substitua pela zona de disponibi
 
   tags = {
-    Name = "subnet-terraform-public-3"
+    Name = "subnet-terraform-order-public-3"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "internet-gateway-terraform"
+    Name = "internet-gateway-order-terraform"
   }
 }
 
@@ -61,7 +61,7 @@ resource "aws_route_table" "route_table" {
   }
 
   tags = {
-    Name = "route-table-terraform"
+    Name = "route-table-order-terraform"
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_security_group" "security_group" {
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
-    Name = "security_group-terraform"
+    Name = "security_group-order-terraform"
   }
 }
 
