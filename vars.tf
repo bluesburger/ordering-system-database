@@ -1,3 +1,9 @@
+variable "project_name" {
+  description = "Nome do projeto. Por exemplo, 'bluesburguer'."
+  default     = "blues-burger"
+  type        = string
+}
+
 variable "project_name_menu" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
   default     = "blues-burger-menu"
@@ -9,7 +15,6 @@ variable "project_name_order" {
   default     = "blues-burger-order"
   type        = string
 }
-
 variable "db_name" {
   description = "Nome do RDS. Por exemplo, 'mydb'."
   default     = "dbbluesburger"
