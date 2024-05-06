@@ -1,4 +1,4 @@
-name: Create Terraform Plan for RDS
+name: Create Terraform Plan for RDS 
 
 on:
   push:
