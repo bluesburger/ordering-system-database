@@ -1,6 +1,12 @@
-variable "project_name" {
+variable "project_name_menu" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
-  default     = "blues-burger"
+  default     = "blues-burger-menu"
+  type        = string
+}
+
+variable "project_name_order" {
+  description = "Nome do projeto. Por exemplo, 'bluesburguer'."
+  default     = "blues-burger-order"
   type        = string
 }
 

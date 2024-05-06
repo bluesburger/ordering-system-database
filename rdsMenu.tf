@@ -2,7 +2,7 @@ resource "aws_db_instance" "rdsmenu" {
   db_name                      = var.db_name_menu
   engine                       = var.engine_rds
   engine_version               = var.engine_rds_version
-  identifier                   = "rds-${var.project_name}"
+  identifier                   = "rds-${var.project_name_menu}"
   username                     = var.rds_user
   password                     = var.rds_pass
   instance_class               = var.instance_class

@@ -7,7 +7,7 @@ resource "aws_db_instance" "rdsorder" {
   db_name                      = var.db_name
   engine                       = var.engine_rds
   engine_version               = var.engine_rds_version
-  identifier                   = "rds-${var.project_name}"
+  identifier                   = "rds-${var.project_name_order}"
   username                     = var.rds_user
   password                     = var.rds_pass
   instance_class               = var.instance_class
