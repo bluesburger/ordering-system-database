@@ -5,8 +5,9 @@ resource "aws_dynamodb_table" "dynamodb_table" {
   read_capacity     = var.readCapacity
   write_capacity    = var.writeCapacity
 
-  vpc_configuration {
-    subnet_ids = aws_db_subnet_group.subnet-rds.subnet_ids
+  tags = {
+    Subnet1 = aws_subnet.cluster-vpc-subnet-private-1.id,
+    Subnet2 = aws_subnet.cluster-vpc-subnet-private-2.id
   }
 
   attribute {
