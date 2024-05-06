@@ -4,6 +4,12 @@ variable "project_name" {
   type        = string
 }
 
+variable "project_name_dynamo" {
+  description = "Nome do projeto. Por exemplo, 'bluesburguer'."
+  default     = "payment"
+  type        = string
+}
+
 variable "project_name_menu" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
   default     = "blues-burger-menu"
