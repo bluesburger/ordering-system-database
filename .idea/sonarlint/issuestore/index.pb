@@ -9,8 +9,6 @@ M
 .github/workflows/tf_plan.yml,8\8\8848f83eef6323001bba87697bd04c04d178338f
 K
 .github/workflows/tf_pr.yml,b\7\b7f220f5e070a3dc1ff388acaa880351db8a85d7
-9
-	dynamo.tf,4\6\46c5795590743a8dedc04e8e9c54bc7c744a55ba
 :
 
 network.tf,8\7\87390dbf798e9f88805c26356b760dc5569cb19d
@@ -25,3 +23,8 @@ rdsMenu.tf,7\6\7634185a946cd247590004e5bb6078baac945464
 sg.tf,1\c\1c02fc2ce7561ba5e0da5b406d556fba45d5ff6c
 7
 vars.tf,6\1\610add5fd9110f78c4367b58ed5513362295860f
+@
+dynamoPayment.tf,7\c\7cc8c9e02babbdbb701402468399ec2a1e0789e5
+:
+
+outputs.tf,0\2\02d78875da80fc224ac8688bcc51401e08afb82d
