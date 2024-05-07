@@ -14,7 +14,7 @@ resource "aws_db_instance" "rdsorder" {
   storage_type                 = var.storage_type
   allocated_storage            = var.min_storage
   max_allocated_storage        = var.max_storage
-  vpc_security_group_ids       = [aws_security_group.sg-rds.id]
+  vpc_security_group_ids       = [aws_security_group.sg-rds-order.id]
   db_subnet_group_name         = aws_db_subnet_group.subnet-rds.name
   multi_az                     = false
   apply_immediately            = true

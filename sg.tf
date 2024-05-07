@@ -50,9 +50,9 @@ resource "aws_security_group" "private_subnet_sg" {
   }
 }
 
-# Provisionamento de Grupos de Segurança para RDS
-resource "aws_security_group" "sg-rds" {
-  name   = "rds-blues-burger-security-group"
+# Provisionamento de Grupos de Segurança para RDS Menu
+resource "aws_security_group" "sg-rds-menu" {
+  name   = "rds-blues-burger-menu-security-group"
   vpc_id = aws_vpc.cluster-vpc-bb.id
 
   # Permitir tráfego de entrada vindo do Security Group do Cluster ECS
@@ -72,6 +72,58 @@ resource "aws_security_group" "sg-rds" {
   }
 
   tags = {
-    Name = "rds-blues-burger-security-group"
+    Name = "rds-blues-burger-menu-security-group"
   }
 }
+
+# Provisionamento de Grupos de Segurança para RDS Order
+resource "aws_security_group" "sg-rds-order" {
+  name   = "rds-blues-burger-order-security-group"
+  vpc_id = aws_vpc.cluster-vpc-bb.id
+
+  # Permitir tráfego de entrada vindo do Security Group do Cluster ECS
+  ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.private_subnet_sg.id]
+  }
+
+  # Permitir tráfego de saída para qualquer destino
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "rds-blues-burger-order-security-group"
+  }
+}
+
+## Provisionamento de Grupos de Segurança para Dynamo Payment
+#resource "aws_security_group" "sg-dynamo-payment" {
+#  name        = "dynamo-blues-burger-payment-security-group"
+#  vpc_id      = aws_vpc.cluster-vpc-bb.id
+#
+#  # Permitir tráfego de entrada vindo do Security Group do Cluster ECS
+#  ingress {
+#    from_port       = 3306
+#    to_port         = 3306
+#    protocol        = "tcp"
+#    security_groups = [aws_security_group.private_subnet_sg.id]
+#  }
+#
+#  # Permitir tráfego de saída para qualquer destino
+#  egress {
+#    from_port   = 0
+#    to_port     = 0
+#    protocol    = "-1"
+#    cidr_blocks = ["0.0.0.0/0"]
+#  }
+#
+#  tags = {
+#    Name = "dynamo-blues-burger-payment-security-group"
+#  }
+#}
