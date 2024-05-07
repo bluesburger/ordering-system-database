@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "dynamodb_table" {
-  name              = var.project_name
+  name              = var.project_name_dynamo
   hash_key          = "paymentId"
   range_key         = "orderId"  # Adicione a chave de classificação aqui
   billing_mode      = "PROVISIONED"
