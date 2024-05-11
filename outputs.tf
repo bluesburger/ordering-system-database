@@ -1,3 +1,3 @@
 output "public_subnet_sg_id" {
-  value = aws_subnet.cluster-vpc-subnet-public-1.id
+  value = aws_security_group.private_subnet_sg.id
 }
