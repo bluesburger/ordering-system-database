@@ -55,14 +55,14 @@ variable "rds_user" {
   description = "Nome de usuário para acessar o RDS. Este valor é sensível."
   type        = string
   sensitive   = true
-  default     = "admin" # TODO - retirar hardcoded
+  default     = "root" # TODO - retirar hardcoded
 }
 
 variable "rds_pass" {
   description = "Senha para acessar o RDS. Este valor é sensível."
   type        = string
   sensitive   = true
-  default     = "Root123456!" # TODO - retirar hardcoded
+  default     = "Root2024" # TODO - retirar hardcoded
 }
 
 variable "instance_class" {
