@@ -55,12 +55,14 @@ variable "rds_user" {
   description = "Nome de usuário para acessar o RDS. Este valor é sensível."
   type        = string
   sensitive   = true
+  default     = "Root"
 }
 
 variable "rds_pass" {
   description = "Senha para acessar o RDS. Este valor é sensível."
   type        = string
   sensitive   = true
+  default     = "Root2024"
 }
 
 variable "instance_class" {
