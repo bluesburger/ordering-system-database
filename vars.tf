@@ -12,13 +12,13 @@ variable "project_name_dynamo" {
 
 variable "project_name_menu" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
-  default     = "blues-burger-menu"
+  default     = "dbmenu"
   type        = string
 }
 
 variable "project_name_order" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
-  default     = "blues-burger-order"
+  default     = "dborder"
   type        = string
 }
 variable "db_name" {
@@ -62,7 +62,7 @@ variable "rds_pass" {
   description = "Senha para acessar o RDS. Este valor é sensível."
   type        = string
   sensitive   = true
-  default     = "Root2024"
+  default     = "Root@2024"
 }
 
 variable "instance_class" {
