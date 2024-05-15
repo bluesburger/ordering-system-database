@@ -1,159 +1,139 @@
-resource "aws_db_subnet_group" "subnet-rds" {
-  name       = var.projectName
-  subnet_ids = [aws_subnet.subnet1.id, aws_subnet.subnet2.id, aws_subnet.subnet3.id]
-}
-
-resource "aws_vpc" "vpc" {
+# Provisionamento VPC
+resource "aws_vpc" "cluster-vpc-bb" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "vpc-terraform"
+    Name = "vpc-blues-burger"
   }
 }
 
-resource "aws_subnet" "subnet1" {
-  vpc_id            = aws_vpc.vpc.id
+# Provisionamento Subnets Públicas
+resource "aws_subnet" "cluster-vpc-subnet-public-1" {
+  vpc_id            = aws_vpc.cluster-vpc-bb.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1a"
 
+  map_public_ip_on_launch = true
+
   tags = {
-    Name = "subnet-terraform-public-1"
+    Name = "subnet-public-blues-burger-1"
   }
 }
 
-resource "aws_subnet" "subnet2" {
-  vpc_id            = aws_vpc.vpc.id
+resource "aws_subnet" "cluster-vpc-subnet-public-2" {
+  vpc_id            = aws_vpc.cluster-vpc-bb.id
   cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-1b"
 
+  map_public_ip_on_launch = true
+
   tags = {
-    Name = "subnet-terraform-public-2"
+    Name = "subnet-public-blues-burger-2"
   }
 }
 
-resource "aws_subnet" "subnet3" {
-  vpc_id            = aws_vpc.vpc.id
+# Provisionamento Subnets Privadas
+resource "aws_subnet" "cluster-vpc-subnet-private-1" {
+  vpc_id            = aws_vpc.cluster-vpc-bb.id
   cidr_block        = "10.0.3.0/24"
-  availability_zone = "us-east-1c"
+  availability_zone = "us-east-1a"
 
   tags = {
-    Name = "subnet-terraform-public-3"
+    Name = "subnet-private-blues-burger-1"
   }
 }
 
-resource "aws_subnet" "subnet_private_1" {
-  vpc_id            = aws_vpc.vpc.id
+resource "aws_subnet" "cluster-vpc-subnet-private-2" {
+  vpc_id            = aws_vpc.cluster-vpc-bb.id
   cidr_block        = "10.0.4.0/24"
-  availability_zone = "us-east-1d"
+  availability_zone = "us-east-1b"
 
   tags = {
-    Name = "subnet-terraform-private-1"
+    Name = "subnet-private-blues-burger-2"
   }
 }
 
-resource "aws_subnet" "subnet_private_2" {
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "10.0.5.0/24"
-  availability_zone = "us-east-1e"
+# Provisionamento Internet Gateway
+resource "aws_internet_gateway" "cluster-igw" {
+  vpc_id = aws_vpc.cluster-vpc-bb.id
 
   tags = {
-    Name = "subnet-terraform-private-2"
+    Name = "internet-gateway-blues-burger"
   }
 }
 
-resource "aws_internet_gateway" "internet_gateway" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name = "internet-gateway-terraform"
-  }
-}
-
-resource "aws_route_table" "route_table" {
-  vpc_id = aws_vpc.vpc.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.internet_gateway.id
-  }
-
-  tags = {
-    Name = "route-table-terraform"
-  }
-}
-
-resource "aws_route_table_association" "rta" {
-  subnet_id      = aws_subnet.subnet1.id
-  route_table_id = aws_route_table.route_table.id
-}
-
-resource "aws_route_table_association" "rta2" {
-  subnet_id      = aws_subnet.subnet2.id
-  route_table_id = aws_route_table.route_table.id
-}
-
-resource "aws_route_table_association" "rta3" {
-  subnet_id      = aws_subnet.subnet3.id
-  route_table_id = aws_route_table.route_table.id
-}
-
-resource "aws_security_group" "security_group" {
-  name        = "security_group-terraform"
-  description = "Permitir acesso na porta 80"
-  vpc_id      = aws_vpc.vpc.id
-
-  tags = {
-    Name = "security_group-terraform"
-  }
-}
-
-resource "aws_vpc_security_group_ingress_rule" "security_groups_ipv4" {
-  security_group_id = aws_security_group.security_group.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 22
-  ip_protocol       = "tcp"
-  to_port           = 22
-}
-
-resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
-  security_group_id = aws_security_group.security_group.id
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "-1"
-}
-
-# Criar a tabela de roteamento privada
-resource "aws_route_table" "private_route_table" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name = "private-route-table"
-  }
-}
-
-# Cria um NAT Gateway
-resource "aws_nat_gateway" "nat_gateway" {
-  allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.subnet_private_1.id
-}
-
-resource "aws_route_table_association" "rta4" {
-  subnet_id      = aws_subnet.subnet_private_1.id
-  route_table_id = aws_route_table.private_route_table.id
-}
-
-resource "aws_route_table_association" "rta5" {
-  subnet_id      = aws_subnet.subnet_private_2.id
-  route_table_id = aws_route_table.private_route_table.id
-}
-
-# Associa um Elastic IP ao NAT Gateway
-resource "aws_eip" "nat_eip" {
+# Provisionamento NAT Gateway
+resource "aws_eip" "cluster-eip-nat-gateway" {
   domain = "vpc"
 }
 
-# Associa uma rota para o NAT Gateway na tabela de roteamento da subnet privada
-resource "aws_route" "private_nat_gateway" {
-  route_table_id         = aws_route_table.private_route_table.id
-  destination_cidr_block = aws_subnet.subnet_private_2.cidr_block
-  nat_gateway_id         = aws_nat_gateway.nat_gateway.id
+resource "aws_nat_gateway" "cluster-nat-gateway" {
+  allocation_id = aws_eip.cluster-eip-nat-gateway.id
+  subnet_id     = aws_subnet.cluster-vpc-subnet-public-1.id
+}
+
+# Provisionamento Tabela de Roteamento para Subnets Públicas
+resource "aws_route_table" "cluster-route-table" {
+  vpc_id = aws_vpc.cluster-vpc-bb.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.cluster-igw.id
+  }
+
+  tags = {
+    Name = "route-table-public"
+  }
+}
+
+# Provisionamento Tabela de Roteamento para Subnets Privadas
+resource "aws_route_table" "private_route_1" {
+  vpc_id = aws_vpc.cluster-vpc-bb.id
+
+  tags = {
+    Name = "route-table-private-1"
+  }
+}
+
+resource "aws_route_table" "private_route_2" {
+  vpc_id = aws_vpc.cluster-vpc-bb.id
+
+  tags = {
+    Name = "route-table-private-2"
+  }
+}
+
+# Provisionamento de uma rota para o NAT Gateway para as Subnets Privadas
+resource "aws_route" "private_subnet_1_nat_route" {
+  route_table_id         = aws_route_table.private_route_1.id
+  nat_gateway_id         = aws_nat_gateway.cluster-nat-gateway.id
+  destination_cidr_block = "0.0.0.0/0"
+}
+
+resource "aws_route" "private_subnet_2_nat_route" {
+  route_table_id         = aws_route_table.private_route_2.id
+  nat_gateway_id         = aws_nat_gateway.cluster-nat-gateway.id
+  destination_cidr_block = "0.0.0.0/0"
+}
+
+# Provisionamento Associação de Tabela de Roteamento para Subnets Públicas
+resource "aws_route_table_association" "cluster-rta-public-1" {
+  route_table_id = aws_route_table.cluster-route-table.id
+  subnet_id      = aws_subnet.cluster-vpc-subnet-public-1.id
+}
+
+resource "aws_route_table_association" "cluster-rta-public-2" {
+  route_table_id = aws_route_table.cluster-route-table.id
+  subnet_id      = aws_subnet.cluster-vpc-subnet-public-2.id
+}
+
+# Provisionamento Associação de Tabela de Roteamento para Subnets Privadas
+resource "aws_route_table_association" "cluster-rta-private-1" {
+  route_table_id = aws_route_table.private_route_1.id
+  subnet_id      = aws_subnet.cluster-vpc-subnet-private-1.id
+}
+
+resource "aws_route_table_association" "cluster-rta-private-2" {
+  route_table_id = aws_route_table.private_route_2.id
+  subnet_id      = aws_subnet.cluster-vpc-subnet-private-2.id
 }
