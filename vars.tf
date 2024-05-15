@@ -55,7 +55,7 @@ variable "rds_user" {
   description = "Nome de usuário para acessar o RDS. Este valor é sensível."
   type        = string
   sensitive   = true
-  default     = "root" # TODO - retirar hardcoded
+  default     = "Root" # TODO - retirar hardcoded
 }
 
 variable "rds_pass" {
