@@ -27,3 +27,10 @@ output "rds_aws_instance_identifier_menu" {
   sensitive = true
 }
 
+output "aws_security_group" {
+  value = aws_security_group.sg-rds-order.id
+}
+
+output "aws_security_group_menu" {
+  value = aws_security_group.sg-rds-menu.id
+}
