@@ -83,17 +83,20 @@ resource "aws_security_group" "sg-rds-order" {
 
   # Permitir tráfego de entrada vindo do Security Group do Cluster ECS
   ingress {
+    description = "VPC"
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.private_subnet_sg.id]
+    cidr_blocks = ["0.0.0.0/0"]
+    // security_groups = [aws_security_group.private_subnet_sg.id]
   }
 
   # Permitir tráfego de saída para qualquer destino
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    description = "VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
