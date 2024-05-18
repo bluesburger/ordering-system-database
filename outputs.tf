@@ -17,15 +17,15 @@ output "rds_aws_instance_identifier" {
   sensitive = true
 }
 
-output "rds_endpoint_menu" {
-  value = aws_db_instance.rdsmenu.endpoint
-  # sensitive = true
-}
+# output "rds_endpoint_menu" {
+#   value = aws_db_instance.rdsmenu.endpoint
+#   # sensitive = true
+# }
 
-output "rds_aws_instance_identifier_menu" {
-  value     = aws_db_instance.rdsmenu.identifier
-  sensitive = true
-}
+# output "rds_aws_instance_identifier_menu" {
+#   value     = aws_db_instance.rdsmenu.identifier
+#   sensitive = true
+# }
 
 output "aws_security_group" {
   value = aws_security_group.sg-rds-order.id
