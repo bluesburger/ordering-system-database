@@ -1,6 +1,7 @@
 # Provisionamento VPC
 resource "aws_vpc" "cluster-vpc-bb" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_hostnames = true
 
   tags = {
     Name = "vpc-blues-burger"
