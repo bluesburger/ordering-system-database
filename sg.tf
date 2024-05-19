@@ -38,29 +38,8 @@ resource "aws_security_group" "private_subnet_sg" {
 
   # Permitir tráfego de entrada vindo do Security Group das Subnets Públicas
   ingress {
-    from_port       = 6060
-    to_port         = 6060
-    protocol        = "tcp"
-    security_groups = [aws_security_group.public_subnet_sg.id]
-  }
-
-  ingress {
-    from_port       = 7070
-    to_port         = 7070
-    protocol        = "tcp"
-    security_groups = [aws_security_group.public_subnet_sg.id]
-  }
-
-  ingress {
     from_port       = 8080
     to_port         = 8080
-    protocol        = "tcp"
-    security_groups = [aws_security_group.public_subnet_sg.id]
-  }
-
-  ingress {
-    from_port       = 9090
-    to_port         = 9090
     protocol        = "tcp"
     security_groups = [aws_security_group.public_subnet_sg.id]
   }
@@ -94,29 +73,8 @@ resource "aws_security_group" "private_subnet_sg" {
   }
 
   ingress {
-    from_port   = 6060
-    to_port     = 6060
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 7070
-    to_port     = 7070
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
     from_port   = 8080
     to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 9090
-    to_port     = 9090
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
