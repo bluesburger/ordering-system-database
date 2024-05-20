@@ -1,7 +1,7 @@
 resource "aws_dynamodb_table" "dynamodb_table" {
   name              = var.project_name_dynamo
   hash_key          = "paymentId"
-  range_key         = "orderId"  # Adicione a chave de classificação aqui
+  # range_key         = "orderId"  # Adicione a chave de classificação aqui
   billing_mode      = "PROVISIONED"
   read_capacity     = var.readCapacity
   write_capacity    = var.writeCapacity
@@ -16,14 +16,14 @@ resource "aws_dynamodb_table" "dynamodb_table" {
     type = "S"
   }
 
-  attribute {
-    name = "orderId"
-    type = "S"
-  }
+  # attribute {
+  #   name = "orderId"
+  #   type = "S"
+  # }
 
   global_secondary_index {
     name               = "orderId-index"
-    hash_key           = "orderId"
+    hash_key           = "paymentId"
     projection_type    = "ALL"
     read_capacity      = var.readCapacity
     write_capacity     = var.writeCapacity
