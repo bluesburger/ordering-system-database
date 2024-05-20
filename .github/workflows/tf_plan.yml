@@ -19,6 +19,7 @@ jobs:
     name: 'Terraform RDS'
     runs-on: ubuntu-latest
     environment: 'leandro'
+
     env:
       TF_WORKING_DIR: '.'
 
