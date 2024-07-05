@@ -34,3 +34,7 @@ output "aws_security_group" {
 output "aws_security_group_menu" {
   value = aws_security_group.sg-rds-menu.id
 }
+
+output "aws_security_group_stock" {
+  value = aws_security_group.sg-rds-stock.id
+}

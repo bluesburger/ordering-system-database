@@ -16,6 +16,12 @@ variable "project_name_menu" {
   type        = string
 }
 
+variable "project_name_stock" {
+  description = "Nome do projeto. Por exemplo, 'bluesburguer'."
+  default     = "dbstock"
+  type        = string
+}
+
 variable "project_name_order" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
   default     = "dborder"
@@ -30,6 +36,12 @@ variable "db_name" {
 variable "db_name_menu" {
   description = "Nome do RDS. Por exemplo, 'mydb'."
   default     = "dbbluesburgermenu"
+  type        = string
+}
+
+variable "db_name_stock" {
+  description = "Nome do RDS. Por exemplo, 'mydb'."
+  default     = "dbbluesburgerstock"
   type        = string
 }
 

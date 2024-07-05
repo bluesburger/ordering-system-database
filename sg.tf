@@ -175,6 +175,35 @@ resource "aws_security_group" "sg-rds-order" {
   }
 }
 
+# Provisionamento de Grupos de Segurança para RDS Stock
+resource "aws_security_group" "sg-rds-stock" {
+  name   = "rds-blues-burger-stock-security-group"
+  vpc_id = aws_vpc.cluster-vpc-bb.id
+
+  # Permitir tráfego de entrada vindo do Security Group do Cluster ECS
+  ingress {
+    description = "VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    // security_groups = [aws_security_group.private_subnet_sg.id]
+  }
+
+  # Permitir tráfego de saída para qualquer destino
+  egress {
+    description = "VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "rds-blues-burger-stock-security-group"
+  }
+}
+
 ## Provisionamento de Grupos de Segurança para Dynamo Payment
 #resource "aws_security_group" "sg-dynamo-payment" {
 #  name        = "dynamo-blues-burger-payment-security-group"
