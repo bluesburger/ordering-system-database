@@ -18,6 +18,13 @@ resource "aws_security_group" "public_subnet_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 100
+    to_port     = 100
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # Permitir tráfego de saída para qualquer destino
   egress {
     from_port   = 0
@@ -110,6 +117,13 @@ resource "aws_security_group" "private_subnet_sg" {
   ingress {
     from_port   = 90
     to_port     = 90
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 100
+    to_port     = 100
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
