@@ -38,3 +38,7 @@ output "aws_security_group_menu" {
 output "aws_security_group_stock" {
   value = aws_security_group.sg-rds-stock.id
 }
+
+output "aws_security_group_invoice" {
+  value = aws_security_group.sg-rds-invoice.id
+}

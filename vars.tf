@@ -22,6 +22,12 @@ variable "project_name_stock" {
   type        = string
 }
 
+variable "project_name_invoice" {
+  description = "Nome do projeto. Por exemplo, 'bluesburguer'."
+  default     = "dbinvoice"
+  type        = string
+}
+
 variable "project_name_order" {
   description = "Nome do projeto. Por exemplo, 'bluesburguer'."
   default     = "dborder"
@@ -42,6 +48,12 @@ variable "db_name_menu" {
 variable "db_name_stock" {
   description = "Nome do RDS. Por exemplo, 'mydb'."
   default     = "dbbluesburgerstock"
+  type        = string
+}
+
+variable "db_name_invoice" {
+  description = "Nome do RDS. Por exemplo, 'mydb'."
+  default     = "dbbluesburgerinvoice"
   type        = string
 }
 

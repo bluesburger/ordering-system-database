@@ -87,6 +87,13 @@ resource "aws_security_group" "private_subnet_sg" {
   }
 
   ingress {
+    from_port       = 8025
+    to_port         = 8025
+    protocol        = "tcp"
+    security_groups = [aws_security_group.public_subnet_sg.id]
+  }
+
+  ingress {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
@@ -124,6 +131,13 @@ resource "aws_security_group" "private_subnet_sg" {
   ingress {
     from_port   = 8024
     to_port     = 8024
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8025
+    to_port     = 8025
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -222,6 +236,35 @@ resource "aws_security_group" "sg-rds-stock" {
 
   tags = {
     Name = "rds-blues-burger-stock-security-group"
+  }
+}
+
+# Provisionamento de Grupos de Segurança para RDS invoice
+resource "aws_security_group" "sg-rds-invoice" {
+  name   = "rds-blues-burger-invoice-security-group"
+  vpc_id = aws_vpc.cluster-vpc-bb.id
+
+  # Permitir tráfego de entrada vindo do Security Group do Cluster ECS
+  ingress {
+    description = "VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    // security_groups = [aws_security_group.private_subnet_sg.id]
+  }
+
+  # Permitir tráfego de saída para qualquer destino
+  egress {
+    description = "VPC"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "rds-blues-burger-invoice-security-group"
   }
 }
 
