@@ -52,36 +52,36 @@ resource "aws_security_group" "private_subnet_sg" {
   }
 
   ingress {
-    from_port       = 60
-    to_port         = 60
+    from_port       = 8020
+    to_port         = 8020
     protocol        = "tcp"
     security_groups = [aws_security_group.public_subnet_sg.id]
   }
 
   ingress {
-    from_port       = 70
-    to_port         = 70
+    from_port       = 8021
+    to_port         = 8021
     protocol        = "tcp"
     security_groups = [aws_security_group.public_subnet_sg.id]
   }
 
   ingress {
-    from_port       = 80
-    to_port         = 80
+    from_port       = 8022
+    to_port         = 8022
     protocol        = "tcp"
     security_groups = [aws_security_group.public_subnet_sg.id]
   }
 
   ingress {
-    from_port       = 90
-    to_port         = 90
+    from_port       = 8023
+    to_port         = 8023
     protocol        = "tcp"
     security_groups = [aws_security_group.public_subnet_sg.id]
   }
 
   ingress {
-    from_port       = 100
-    to_port         = 100
+    from_port       = 8024
+    to_port         = 8024
     protocol        = "tcp"
     security_groups = [aws_security_group.public_subnet_sg.id]
   }
@@ -94,36 +94,36 @@ resource "aws_security_group" "private_subnet_sg" {
   }
 
   ingress {
-    from_port   = 60
-    to_port     = 60
+    from_port   = 8020
+    to_port     = 8020
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 70
-    to_port     = 70
+    from_port   = 8021
+    to_port     = 8021
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8022
+    to_port     = 8022
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 90
-    to_port     = 90
+    from_port   = 8023
+    to_port     = 8023
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 100
-    to_port     = 100
+    from_port   = 8024
+    to_port     = 8024
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
